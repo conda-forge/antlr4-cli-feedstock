@@ -9,7 +9,7 @@ source:
   sha256: b9c1c35a712cb088c2370f15b51a52901b4a61d7b9f0d82f1fce586322f282a7
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: pip install --no-deps .
   entry_points:
@@ -18,14 +18,16 @@ build:
   
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools
     - pip
   run:
     - openjdk
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   commands:
     - antlr4
     - antlr4-parse
